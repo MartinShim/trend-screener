@@ -64,6 +64,10 @@ def fetch_prices(tickers: list[str]) -> pd.DataFrame:
         frames.append(sub.reset_index().rename(columns={"Date": "date"}))
     df = pd.concat(frames, ignore_index=True)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
+    # 미국장이 아직 안 끝났으면(뉴욕 16:30 전) 오늘 봉은 장중 미완성이라 버린다.
+    now_ny = pd.Timestamp.now(tz="America/New_York")
+    if now_ny.hour * 60 + now_ny.minute < 16 * 60 + 30:
+        df = df[df["date"] < now_ny.normalize().tz_localize(None)]
     return df
 
 

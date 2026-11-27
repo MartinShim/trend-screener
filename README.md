@@ -10,9 +10,10 @@ cd /Users/martinshim/Desktop/AGENT/07_stock/screener
 
 ## 배포 · 자동 갱신
 - 코드는 `main`, 배포는 `deploy` 브랜치 (= main 코드 + 최신 `data/`).
-- GitHub Actions `update-data`가 **매일 한국시간 17:00**(UTC 08:00)에 데이터를 받아 `deploy`를 커밋 1개로 덮어씀. main에 푸시해도 다시 만듦. Actions 탭에서 수동 실행도 가능.
+- GitHub Actions `update-data`가 **매일 한국시간 17:07**(UTC 08:07)에 데이터를 받아 `deploy`를 커밋 1개로 덮어씀. main에 푸시해도 다시 만듦. Actions 탭에서 수동 실행도 가능.
 - Streamlit Community Cloud가 `deploy` 브랜치의 `app.py`를 띄우고, 푸시될 때마다 자동으로 다시 시작함.
-- GitHub 예약 실행은 몇 분~수십 분 늦을 수 있음.
+- GitHub 예약 실행은 늦게 돌 수 있음 (실제로 몇 시간 밀린 적 있음). 미국장 중에 돌면 미완성 당일 봉은 버림.
+- 앱: https://trend-screener.streamlit.app
 
 ## 파일
 - `data.py` — S&P 500 목록(위키백과), 일봉(yfinance, 수정주가), 실적일 → `data/`
