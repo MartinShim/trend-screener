@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+# 데이터는 main에 올리지 않고, Actions가 매일 deploy 브랜치에 새로 만들어 올림
+data/

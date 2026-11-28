@@ -1,0 +1,234 @@
+/* 글꼴 @import 와 --font 는 app.py 에서 선택값에 맞춰 넣는다 */
+:root {
+  --bg: #0B0E14;
+  --surface: #131823;
+  --surface-2: #1A2030;
+  --border: #232B3B;
+  --text: #E6E9EF;
+  --muted: #8A93A6;
+  --faint: #5B6477;
+  --green: #22C55E;
+  --green-bg: rgba(34, 197, 94, 0.10);
+  --amber: #F5A524;
+  --amber-bg: rgba(245, 165, 36, 0.10);
+  --red: #F05252;
+  --red-bg: rgba(240, 82, 82, 0.10);
+  --blue: #4F8CFF;
+  --gold: #FACC15;
+  --gold-bg: rgba(250, 204, 21, 0.12);
+}
+
+/* 전체 글꼴 (아이콘과 차트는 제외) */
+.stApp, .stApp *:not([data-testid="stIconMaterial"]):not(.js-plotly-plot *) {
+  font-family: var(--font), -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+  letter-spacing: var(--tracking, -0.01em);
+  font-feature-settings: "tnum" 1;
+}
+
+/* 기본 크롬 정리 */
+header[data-testid="stHeader"] { background: transparent; }
+[data-testid="stToolbar"], [data-testid="stDecoration"], footer { display: none !important; }
+.block-container { padding-top: 2.5rem; padding-bottom: 4rem; max-width: 1000px; }
+
+/* 페이지 헤더 */
+.page-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 18px; }
+.page-title { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; }
+.page-date { font-size: 13px; color: var(--muted); }
+
+/* 결론 히어로 */
+.hero {
+  border-radius: 20px; padding: 26px 28px; margin-bottom: 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); }
+.hero.green { --accent: var(--green); --accent-bg: var(--green-bg); }
+.hero.amber { --accent: var(--amber); --accent-bg: var(--amber-bg); }
+.hero.red   { --accent: var(--red);   --accent-bg: var(--red-bg); }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+  color: var(--accent); background: var(--accent-bg);
+}
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.hero-title { font-size: 24px; font-weight: 700; margin: 12px 0 6px; letter-spacing: -0.03em; }
+.hero-title .num { color: var(--accent); }
+.hero-sub { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+
+.market-note {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; color: var(--muted); line-height: 1.55;
+  padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border);
+  margin-bottom: 36px;
+}
+.market-note b { color: var(--text); font-weight: 600; }
+
+/* 섹션 제목 */
+.section-title { font-size: 18px; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.02em; }
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; line-height: 1.55; }
+
+/* 종목 카드 */
+.card {
+  border-radius: 18px; padding: 22px 24px; margin-bottom: 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  transition: border-color .15s ease;
+}
+.card:hover { border-color: #33405A; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.ticker { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+.badge {
+  font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px;
+  color: var(--blue); background: rgba(79, 140, 255, 0.12);
+}
+.name { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.price { text-align: right; }
+.price .label { font-size: 11.5px; color: var(--faint); }
+.price .value { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.chg { font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.chg.up { color: var(--green); }
+.chg.down { color: var(--red); }
+
+.rs {
+  display: inline-block; margin-top: 12px; font-size: 12.5px; color: var(--muted);
+  padding: 4px 10px; border-radius: 8px; background: var(--surface-2);
+}
+.rs b { color: var(--green); font-weight: 600; }
+
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.level { padding: 12px 14px; border-radius: 12px; background: var(--surface-2); }
+.level .k { font-size: 11.5px; color: var(--faint); margin-bottom: 4px; }
+.level .v { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.level .s { font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.level.buy .v { color: var(--green); }
+.level.stop .v { color: var(--amber); }
+
+.note { margin-top: 14px; font-size: 13px; color: var(--muted); line-height: 1.55; }
+.note b { color: var(--text); }
+.note.warn { color: var(--amber); }
+
+/* 거래대금 TOP 10 강조 */
+.hl { color: var(--gold); font-weight: 700; }
+.badge.top { color: var(--gold); background: var(--gold-bg); }
+.rank { font-size: 11px; font-weight: 500; color: var(--faint); }
+.card.core {
+  border-color: rgba(250, 204, 21, 0.45);
+  background: linear-gradient(180deg, rgba(250, 204, 21, 0.06) 0%, var(--surface) 55%);
+  box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.10), 0 8px 28px rgba(250, 204, 21, 0.06);
+}
+.top10 {
+  border-radius: 16px; padding: 16px 18px; margin-bottom: 18px;
+  background: var(--surface); border: 1px solid rgba(250, 204, 21, 0.30);
+}
+.top10-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.top10-sum { font-size: 13px; color: var(--muted); }
+.top10-sum b { color: var(--gold); font-size: 15px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px; cursor: default;
+  font-size: 12.5px; font-weight: 600; padding: 5px 10px; border-radius: 8px;
+  color: var(--faint); background: var(--surface-2); border: 1px solid var(--border);
+}
+.chip i { font-style: normal; font-size: 10.5px; font-weight: 500; opacity: .7; }
+.chip.on { color: var(--green); background: var(--green-bg); border-color: rgba(34, 197, 94, 0.35); }
+.top10-foot { font-size: 11.5px; color: var(--faint); margin-top: 10px; }
+
+.empty {
+  text-align: center; padding: 36px 20px; color: var(--muted); font-size: 14px;
+  border: 1px dashed var(--border); border-radius: 16px;
+}
+
+/* 차트 위 숫자 */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 6px 0 4px; }
+.stat { padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); }
+.stat .k { font-size: 11.5px; color: var(--faint); margin-bottom: 4px; }
+.stat .v { font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.legend-note { font-size: 12px; color: var(--faint); margin-top: -6px; }
+
+/* Streamlit 위젯 다듬기 */
+[data-testid="stExpander"] {
+  border: 1px solid var(--border) !important; border-radius: 14px !important; background: var(--surface);
+}
+[data-testid="stExpander"] summary { font-size: 14px; font-weight: 600; }
+[data-baseweb="select"] > div { border-radius: 12px !important; background: var(--surface) !important; border-color: var(--border) !important; }
+.stButton > button {
+  border-radius: 10px; border: 1px solid var(--border); background: var(--surface);
+  font-size: 13px; font-weight: 600; color: var(--text);
+}
+.stButton > button:hover { border-color: var(--blue); color: var(--blue); }
+
+.footer { font-size: 12px; color: var(--faint); line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .levels, .stats { grid-template-columns: 1fr 1fr; }
+  .hero-title { font-size: 21px; }
+}
+
+/* ── 리포트 레이아웃 추가 ───────────────────────── */
+.up { color: var(--green); }
+.down { color: var(--red); }
+.stats.four { grid-template-columns: repeat(4, 1fr); margin-bottom: 14px; }
+
+.tag {
+  display: inline-block; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+  margin-right: 8px; vertical-align: middle;
+}
+.tag.green { color: var(--green); background: var(--green-bg); }
+.tag.red   { color: var(--red);   background: var(--red-bg); }
+.tag.amber { color: var(--amber); background: var(--amber-bg); }
+
+/* 지수 카드 */
+.idx { padding: 16px 18px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); margin-bottom: 12px; }
+.idx-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.idx-name { font-size: 15px; font-weight: 700; }
+.idx-sub { font-size: 11.5px; color: var(--faint); margin-top: 2px; }
+.idx-price { font-size: 22px; font-weight: 700; margin: 10px 0 8px; font-variant-numeric: tabular-nums; }
+.idx-price .chg { font-size: 13px; margin-left: 6px; display: inline; }
+.idx-stats { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 12px; color: var(--muted); }
+.idx-stats b { color: var(--text); font-variant-numeric: tabular-nums; }
+.idx-stats b.up { color: var(--green); }
+.idx-stats b.down { color: var(--red); }
+
+/* 선정 이유 */
+.reasons { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+.reasons-title { font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 10px; letter-spacing: 0; }
+.reason { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+.reason + .reason { border-top: 1px dashed var(--border); }
+.reason b { font-size: 14px; }
+.ok {
+  flex: none; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--green); background: var(--green-bg); margin-top: 1px;
+}
+.rs-sub { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.55; font-variant-numeric: tabular-nums; }
+.rs-sub b { font-size: 12.5px; color: var(--text); }
+.rs-sub b.up { color: var(--green); }
+
+.outcome { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+.outcome b { font-size: 15px; }
+
+@media (max-width: 640px) { .stats.four { grid-template-columns: 1fr 1fr; } }
+
+/* ② 선별 종목 50개 블록 */
+[class*="st-key-blk_"] {
+  border-radius: 16px; padding: 14px 16px 10px; margin-bottom: 10px;
+  background: var(--surface); border: 1px solid var(--border);
+}
+.st-key-blk_top { border-color: rgba(250, 204, 21, 0.35); }
+.blk-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+.badge.rest { color: var(--muted); background: var(--surface-2); }
+[class*="st-key-blk_"] [data-testid="stButtonGroup"] button {
+  font-size: 12.5px; font-weight: 600; color: var(--faint); background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 8px; min-height: 30px; padding: 2px 10px;
+  font-variant-numeric: tabular-nums;
+}
+[class*="st-key-blk_"] [data-testid="stButtonGroup"] button[aria-checked="true"],
+[class*="st-key-blk_"] [data-testid="stButtonGroup"] button[kind$="Active"] {
+  outline: 2px solid var(--blue) !important; outline-offset: 1px; color: var(--text) !important;
+}
+.ng {
+  flex: none; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--red); background: var(--red-bg); margin-top: 1px;
+}
+.reason.fail b { color: var(--red); }
+.reason.fail .rs-sub b { color: inherit; }
+.drop { font-size: 12px; color: var(--muted); }
